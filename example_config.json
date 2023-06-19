@@ -74,8 +74,8 @@
           "certificates": [
             {
               "ocspStapling": 3600, //The Xray version is not less than v1.3.0 to support configuring the time interval between OCSP stapling update and certificate hot reload. Currently V2Ray does not support it. If you use V2Ray as the server, you must delete this configuration.
-              "certificateFile": "/etc/ssl/example.com/domain.pem", // this is te fullchain (domain + any bundle). Make sure the permissions are correct (absolute path)
-              "keyFile": "/etc/ssl/example.com/domain-key.pem" // this is the private key of the cert. Make sure the permissions are correct (absolute path)
+              "certificateFile": "/etc/xray/certs/mydomain.crt", // this is te fullchain (domain + any bundle). Make sure the permissions are correct (absolute path)
+              "keyFile": "/etc/xray/certs/mydomain.key" // this is the private key of the cert. Make sure the permissions are correct (absolute path)
             }
           ],
           "minVersion": "1.2", //Xray version is not less than v1.1.4 to support configuring the minimum TLS version. Currently V2Ray does not support it. If you use V2Ray as the server, you must delete this configuration.
