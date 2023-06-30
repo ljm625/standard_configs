@@ -58,6 +58,12 @@
             "xver": 2
           },
           {
+            // if the path was `/vmws`, pass it to vmess-ws listener
+            "path": "/ws",
+            "dest": "@vmess-ws",
+            "xver": 2
+          },
+          {
             // if not any other condition, pass it to Nginx HTTP1.1 listener
             "dest": "/dev/shm/h1.sock",
             "xver": 2
@@ -131,6 +137,35 @@
         ]
       }
     },
+    {
+      "listen": "@vmess-ws",
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "email": "general@vmess-ws", 
+            "id": "change-uuid",
+            "level": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "acceptProxyProtocol": true,
+          "path": "/ws"
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      }
+    },
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //        GRPC (VLESS - VMESS - TROJAN - SHADOWSOCKS) (Nginx routes to them based on `serviceName`(HTTP2 Path) )      //
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
